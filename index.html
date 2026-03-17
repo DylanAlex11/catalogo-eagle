@@ -11,37 +11,30 @@
 <meta name="description" content="Catálogo de productos - Explora herramientas, eléctricos, accesorios y más.">
 
 <link rel="stylesheet" href="styles.css">
-
 <link rel="icon" type="image/png" href="./img/favicon1.png">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ✅ CDN CORRECTO -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
 </head>
 
 <body>
 
 <header>
-
-<img src="img/logo.png" class="logo" alt="Logo tienda">
-
+<img src="img/logo.png" class="logo">
 <h1>Catálogo de Productos</h1>
-
 <p class="bienvenida">
 Explora nuestros productos y contáctanos para hacer tu pedido.
 </p>
-
 </header>
 
 <section class="banner">
-
-<img src="img/banner.jpg" alt="Banner catálogo">
-
+<img src="img/banner.jpg">
 </section>
 
 <h2 class="tituloDestacados">Productos destacados</h2>
-
 <div id="destacados" class="productos"></div>
 
 <input
@@ -52,17 +45,11 @@ onkeyup="buscarProducto()"
 />
 
 <div class="categorias">
-
 <button onclick="filtrarCategoria('todos')">Todos</button>
-
 <button onclick="filtrarCategoria('Herramientas')">Herramientas</button>
-
 <button onclick="filtrarCategoria('Electricos')">Eléctricos</button>
-
 <button onclick="filtrarCategoria('Accesorios')">Accesorios</button>
-
 <button onclick="filtrarCategoria('Automotriz')">Automotriz</button>
-
 </div>
 
 <div id="productos" class="productos"></div>
@@ -72,36 +59,26 @@ onkeyup="buscarProducto()"
 </button>
 
 <div id="carrito" class="carrito">
-
 <h2>Tu pedido</h2>
-
 <ul id="listaCarrito"></ul>
-
 <h3>Total: $<span id="totalCarrito">0</span></h3>
 
 <button onclick="generarPDF()">Descargar pedido</button>
 <button onclick="enviarWhatsApp()">Enviar pedido</button>
 <button onclick="vaciarCarrito()">Vaciar carrito</button>
 <button onclick="cerrarCarrito()">Cerrar</button>
-
 </div>
 
 <div id="modalProducto" class="modal">
-
 <div class="modalContenido">
 
 <span class="cerrar" onclick="cerrarModal()">×</span>
 
 <img id="modalImagen">
-
 <h2 id="modalNombre"></h2>
-
 <p id="modalPrecio"></p>
-
 <p id="modalMarca"></p>
-
 <p id="modalModelo"></p>
-
 <p id="modalDescripcion"></p>
 
 <button id="modalAgregar">
@@ -109,19 +86,9 @@ Agregar al carrito
 </button>
 
 </div>
-
 </div>
 
-<a
-href="https://wa.me/525670072002"
-class="botonWhatsApp"
-target="_blank"
-title="Contactar por WhatsApp"
->
-
-💬
-
-</a>
+<a href="https://wa.me/525670072002" class="botonWhatsApp" target="_blank">💬</a>
 
 <div id="notificacion" class="notificacion">
 Producto agregado al carrito
@@ -129,10 +96,10 @@ Producto agregado al carrito
 
 <div id="animacionCarrito"></div>
 
+<!-- ORDEN CORRECTO -->
 <script src="services/supabase.js"></script>
 <script src="services/productos.js"></script>
 <script src="app.js"></script>
 
 </body>
-
 </html>
