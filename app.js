@@ -446,3 +446,15 @@ carritoIcon.classList.remove("rebote")
 },300)
 
 }
+async function iniciarCatalogo(){
+
+  productos = await obtenerProductos()
+
+  console.log("PRODUCTOS:", productos) // 👈 ESTA LÍNEA
+
+  ordenarOfertas()
+  mostrarProductos(productos)
+  mostrarDestacados()
+  actualizarContador()
+
+}
