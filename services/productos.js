@@ -1,8 +1,7 @@
-
 async function obtenerProductos() {
   try {
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
       .from("productos")
       .select("*");
 
