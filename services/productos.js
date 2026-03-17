@@ -13,18 +13,24 @@ return data
 
 }
 async function obtenerProductos() {
+  try {
 
-  const { data, error } = await supabase
-    .from("productos")
-    .select("*");
+    const { data, error } = await supabase
+      .from("productos")
+      .select("*");
 
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
 
-  if (error) {
-    console.error("Error cargando productos:", error);
+    if (error) {
+      console.error("Error Supabase:", error);
+      return [];
+    }
+
+    return data || [];
+
+  } catch (e) {
+    console.error("Error general:", e);
     return [];
   }
-
-  return data;
 }
