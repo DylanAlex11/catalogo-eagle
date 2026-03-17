@@ -1,0 +1,659 @@
+body{
+
+font-family:Arial;
+margin:0;
+padding:20px;
+background:#f9fafb;
+
+}
+
+/* HEADER */
+
+header{
+
+text-align:center;
+margin-bottom:20px;
+
+}
+
+.logo{
+
+width:200px;
+
+}
+
+.banner img{
+
+width:100%;
+border-radius:10px;
+margin-bottom:20px;
+
+}
+
+/* BUSCADOR */
+
+#buscador{
+
+width:100%;
+padding:12px;
+margin:20px 0;
+
+border-radius:6px;
+border:1px solid #ccc;
+
+outline:none;
+
+}
+
+#buscador:focus{
+
+border:1px solid #111;
+
+}
+
+/* CATEGORIAS */
+
+.categorias{
+
+text-align:center;
+margin-bottom:20px;
+
+}
+
+.categorias button{
+
+margin:5px;
+padding:10px 15px;
+
+border:none;
+background:#111;
+color:white;
+
+border-radius:6px;
+
+cursor:pointer;
+
+transition:all .2s;
+
+}
+
+.categorias button:hover{
+
+background:#333;
+transform:scale(1.05);
+
+}
+
+/* GRID PRODUCTOS */
+
+.productos{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(200px,1fr));
+
+gap:20px;
+
+}
+
+/* CARD PRODUCTO */
+
+.card{
+
+position:relative;
+
+background:white;
+
+border-radius:10px;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
+padding:10px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:transform .2s, box-shadow .2s;
+
+}
+
+.card:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 10px 22px rgba(0,0,0,0.2);
+
+}
+
+.card img{
+
+width:100%;
+height:180px;
+
+object-fit:cover;
+
+border-radius:6px;
+
+transition:transform .3s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.08);
+
+}
+
+.card h3{
+
+font-size:16px;
+margin:10px 0;
+
+}
+
+.card button{
+
+margin-top:10px;
+
+padding:10px;
+
+border:none;
+
+background:#111;
+color:white;
+
+border-radius:6px;
+
+cursor:pointer;
+
+transition:all .2s;
+
+width:100%;
+
+}
+
+.card button:hover{
+
+background:#444;
+
+transform:scale(1.05);
+
+}
+
+/* ETIQUETA OFERTA */
+
+.oferta{
+
+position:absolute;
+
+top:10px;
+left:10px;
+
+background:red;
+
+color:white;
+
+font-size:12px;
+
+padding:4px 8px;
+
+border-radius:4px;
+
+font-weight:bold;
+
+}
+
+/* PRECIOS */
+
+.precioAnterior{
+
+text-decoration:line-through;
+
+color:#999;
+
+font-size:14px;
+
+margin-right:5px;
+
+}
+
+.precioOferta{
+
+color:red;
+
+font-weight:bold;
+
+font-size:18px;
+
+}
+
+/* BOTON CARRITO */
+
+.botonCarrito{
+
+position:fixed;
+
+bottom:20px;
+right:20px;
+
+background:black;
+color:white;
+
+border:none;
+
+padding:15px;
+
+border-radius:50%;
+
+font-size:18px;
+
+cursor:pointer;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+
+transition:transform .2s, box-shadow .2s;
+
+z-index:1000;
+
+}
+
+.botonCarrito:hover{
+
+transform:scale(1.1);
+
+box-shadow:0 8px 18px rgba(0,0,0,0.4);
+
+}
+
+/* PANEL CARRITO */
+
+.carrito{
+
+position:fixed;
+
+top:0;
+right:0;
+
+width:320px;
+height:100vh;
+
+background:white;
+
+border-left:1px solid #ddd;
+
+padding:20px;
+
+display:none;
+
+flex-direction:column;
+
+overflow:hidden;
+
+z-index:1001;
+
+}
+
+@keyframes slideCarrito{
+
+from{
+transform:translateX(100%);
+}
+
+to{
+transform:translateX(0);
+}
+
+}
+
+/* SCROLL PRODUCTOS CARRITO */
+
+#listaCarrito{
+
+flex:1;
+
+overflow-y:auto;
+
+max-height:60vh;
+
+margin-bottom:10px;
+
+padding-right:5px;
+
+}
+
+.carrito ul{
+
+list-style:none;
+padding:0;
+
+}
+
+.carrito li{
+
+display:flex;
+flex-direction:column;
+
+margin-bottom:10px;
+
+background:#f3f4f6;
+
+padding:10px;
+
+border-radius:6px;
+
+}
+
+/* BOTONES CARRITO */
+
+.carrito button{
+
+border:none;
+
+background:#111;
+
+color:white;
+
+padding:6px 10px;
+
+border-radius:5px;
+
+cursor:pointer;
+
+margin-top:5px;
+
+transition:.2s;
+
+}
+
+.carrito button:hover{
+
+background:#333;
+
+transform:scale(1.1);
+
+}
+
+/* MODAL PRODUCTO */
+
+.modal{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.6);
+
+align-items:center;
+justify-content:center;
+
+z-index:999;
+
+}
+
+.modalContenido{
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+width:90%;
+max-width:400px;
+
+text-align:center;
+
+animation:aparecer .3s;
+
+}
+
+.modalContenido img{
+
+width:100%;
+max-height:250px;
+object-fit:contain;
+
+border-radius:6px;
+
+margin-bottom:10px;
+
+}
+
+.cerrar{
+
+float:right;
+
+font-size:24px;
+
+cursor:pointer;
+
+}
+
+@keyframes aparecer{
+
+from{
+transform:scale(.8);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+/* BOTON WHATSAPP */
+
+.botonWhatsApp{
+
+position:fixed;
+
+bottom:20px;
+left:20px;
+
+background:#25D366;
+
+color:white;
+
+width:60px;
+height:60px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:28px;
+
+border-radius:50%;
+
+text-decoration:none;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+
+animation:pulso 2s infinite;
+
+}
+
+@keyframes pulso{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+
+}
+
+/* NOTIFICACION */
+
+.notificacion{
+
+position:fixed;
+
+top:20px;
+right:20px;
+
+background:#111;
+color:white;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+opacity:0;
+
+transform:translateY(-20px);
+
+transition:all .3s;
+
+z-index:999;
+
+}
+
+.notificacion.mostrar{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* ANIMACION CARRITO */
+
+.rebote{
+
+animation:rebote .3s;
+
+}
+
+@keyframes rebote{
+
+0%{transform:scale(1)}
+50%{transform:scale(1.25)}
+100%{transform:scale(1)}
+
+}
+
+/* SCROLL BONITO */
+
+#listaCarrito::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+#listaCarrito::-webkit-scrollbar-thumb{
+
+background:#ccc;
+
+border-radius:4px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+.productos{
+
+grid-template-columns:
+repeat(auto-fill,minmax(150px,1fr));
+
+}
+
+.logo{
+
+width:150px;
+
+}
+
+.card img{
+
+height:140px;
+
+}
+
+.modalContenido{
+
+width:95%;
+
+}
+
+.carrito{
+
+width:100%;
+
+}
+
+}
+/* ============================= */
+/* AJUSTES EXTRA PARA CELULAR */
+/* ============================= */
+
+@media(max-width:600px){
+
+/* carrito ocupa toda la pantalla */
+.carrito{
+width:100%;
+right:0;
+top:0;
+height:100vh;
+padding:15px;
+}
+
+/* lista del carrito con mejor scroll */
+#listaCarrito{
+max-height:55vh;
+overflow-y:auto;
+}
+
+/* productos dentro del carrito */
+.carrito li{
+font-size:14px;
+}
+
+/* botones del carrito en columna */
+.carrito button{
+width:100%;
+margin-top:8px;
+}
+
+/* botones principales del carrito */
+.carrito .accionesCarrito{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+/* botón carrito más pequeño */
+.botonCarrito{
+width:55px;
+height:55px;
+font-size:16px;
+}
+
+/* botón whatsapp más pequeño */
+.botonWhatsApp{
+width:55px;
+height:55px;
+font-size:24px;
+}
+
+}
+/* AJUSTE PARA CELULARES (WHATSAPP / SAFARI) */
+
+@media(max-width:600px){
+
+.carrito{
+padding-top:40px;
+box-sizing:border-box;
+}
+
+}

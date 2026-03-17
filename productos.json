@@ -1,0 +1,98 @@
+[
+{
+"id":1,
+"nombre":"Taladro",
+"precio":1200,
+"precioOferta":950,
+"oferta":false,
+"categoria":"Herramientas",
+"imagen":"img/taladro.jpg",
+"marca":"Truper",
+"modelo":"GSB 13 RE",
+"descripcion":"Taladro eléctrico de alta potencia ideal para perforar madera, metal y concreto. Incluye ajuste de velocidad y mango ergonómico."
+},
+{
+"id":2,
+"nombre":"Extensión eléctrica",
+"precio":300,
+"categoria":"Electricos",
+"imagen":"img/extension.jpg",
+"marca":"Truper",
+"modelo":"EXT-10M",
+"descripcion":"Extensión eléctrica de 10 metros con protección térmica. Ideal para herramientas eléctricas y uso doméstico."
+},
+{
+"id":3,
+"nombre":"Caja de tornillos",
+"precio":150,
+"precioOferta":120,
+"oferta":true,
+"categoria":"Accesorios",
+"imagen":"img/tornillos.jpg",
+"marca":"Fixer",
+"modelo":"KIT-200",
+"descripcion":"Caja surtida con tornillos de diferentes tamaños para madera y metal. Perfecta para reparaciones y trabajos de instalación."
+},
+{
+"id":4,
+"nombre":"Aceite de motor 20W50",
+"precio":220,
+"categoria":"Automotriz",
+"imagen":"img/aceite2050.jpg",
+"marca":"Mobil",
+"modelo":"Super 20W50",
+"descripcion":"Aceite multigrado para motores de alto kilometraje. Protege contra desgaste y altas temperaturas."
+},
+{
+"id":5,
+"nombre":"Aceite de motor 10W30",
+"precio":210,
+"categoria":"Automotriz",
+"imagen":"img/aceite1030.jpg",
+"marca":"Castrol",
+"modelo":"Edge 10W30",
+"descripcion":"Aceite lubricante de alto rendimiento que reduce fricción y mejora la eficiencia del motor."
+},
+{
+"id":6,
+"nombre":"Refrigerante para automóvil",
+"precio":180,
+"categoria":"Automotriz",
+"imagen":"img/refrigerante.jpg",
+"marca":"Hella",
+"modelo":"AF-2000",
+"descripcion":"Refrigerante anticongelante que protege el sistema de enfriamiento y evita el sobrecalentamiento."
+},
+{
+"id":7,
+"nombre":"Plumas limpiaparabrisas",
+"precio":120,
+"precioOferta":95,
+"oferta":true,
+"categoria":"Automotriz",
+"imagen":"img/plumas.jpg",
+"marca":"Bosch",
+"modelo":"Eco 22",
+"descripcion":"Plumas limpiaparabrisas universales de alta calidad para una limpieza silenciosa y eficiente."
+},
+{
+"id":8,
+"nombre":"Liquido limpiaparabrisas",
+"precio":90,
+"categoria":"Automotriz",
+"imagen":"img/limpiaparabrisas.jpg",
+"marca":"Splash",
+"modelo":"RX-500",
+"descripcion":"Líquido limpiador que elimina polvo, grasa e insectos del parabrisas."
+},
+{
+"id":9,
+"nombre":"Aceite para transmisión",
+"precio":260,
+"categoria":"Automotriz",
+"imagen":"img/aceitetransmision.jpg",
+"marca":"Castrol",
+"modelo":"ATF/CVT UNIVERSAL",
+"descripcion":"Aceite especial para transmisión que reduce fricción y protege los engranajes."
+}
+]
