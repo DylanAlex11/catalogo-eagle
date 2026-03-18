@@ -275,43 +275,49 @@ function actualizarContador(){
 
 }
 
-// 🔥 NUEVO: IR A CHECKOUT
-function irCheckout(){
+// 🔥 MOSTRAR OPCIONES
+function abrirOpcionesCompra(){
 
   if(carrito.length === 0){
     alert("Tu carrito está vacío")
     return
   }
 
+  let div = document.getElementById("opcionesCompra")
+
+  div.style.display =
+  div.style.display === "none" ? "block" : "none"
+
+}
+
+// 🚚 ENVÍO
+function irCheckout(){
   window.location.href = "checkout/checkout.html"
 }
 
-// 💬 WHATSAPP (mejorado)
-function enviarWhatsApp(){
+// 🏪 RETIRO EN SUCURSAL
+function retirarSucursal(){
 
   if(carrito.length === 0){
     alert("Tu carrito está vacío")
     return
   }
 
-  let nombre = prompt("Ingresa tu nombre para enviar el pedido:")
+  let mensaje = "Hola, quiero hacer este pedido para retirar en sucursal:\n\n"
 
-  if(!nombre){
-    alert("Debes ingresar tu nombre para continuar")
-    return
-  }
-
-  let mensaje = `Cliente: ${nombre}\n\n`
   let total = 0
 
   carrito.forEach(p=>{
+
     let subtotal = p.precio * p.cantidad
     total += subtotal
 
     mensaje += `${p.nombre} x${p.cantidad} - $${subtotal}\n`
+
   })
 
   mensaje += `\nTOTAL: $${total}`
+  mensaje += `\nModalidad: Retiro en sucursal`
 
   window.open(
   `https://wa.me/525670072002?text=${encodeURIComponent(mensaje)}`
@@ -319,6 +325,10 @@ function enviarWhatsApp(){
 
 }
 
+// 💬 (YA NO SE USA PERO NO ROMPE)
+function enviarWhatsApp(){}
+
+// PDF
 function generarPDF(){
 
   const { jsPDF } = window.jspdf

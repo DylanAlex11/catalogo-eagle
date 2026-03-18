@@ -65,13 +65,24 @@ onkeyup="buscarProducto()"
 
 <h3>Total: $<span id="totalCarrito">0</span></h3>
 
-<!-- 🔥 NUEVO: BOTÓN CHECKOUT -->
-<button onclick="irCheckout()">
+<!-- 🔥 NUEVO FLUJO -->
+<button onclick="abrirOpcionesCompra()">
 Finalizar compra 🚚
 </button>
 
+<div id="opcionesCompra" style="display:none; margin-top:10px;">
+
+<button onclick="irCheckout()">
+🚚 Envío a domicilio
+</button>
+
+<button onclick="retirarSucursal()">
+🏪 Retirar en sucursal
+</button>
+
+</div>
+
 <button onclick="generarPDF()">Descargar pedido</button>
-<button onclick="enviarWhatsApp()">Enviar pedido</button>
 <button onclick="vaciarCarrito()">Vaciar carrito</button>
 <button onclick="cerrarCarrito()">Cerrar</button>
 
