@@ -11,52 +11,15 @@
 <link rel="stylesheet"
 href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ✅ CDN correcto -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
 <style>
-
-body{
-font-family:Arial;
-padding:20px;
-background:#f5f5f5;
-}
-
-.formulario, .resumen{
-background:white;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-}
-
-input{
-width:100%;
-padding:10px;
-margin-bottom:10px;
-}
-
-#map{
-height:300px;
-border-radius:10px;
-}
-
-button{
-padding:12px;
-background:black;
-color:white;
-border:none;
-cursor:pointer;
-width:100%;
-margin-top:10px;
-}
-
-.metodos{
-margin-top:15px;
-}
-
-.metodos button{
-background:#111;
-}
-
+body{font-family:Arial;padding:20px;background:#f5f5f5;}
+.formulario,.resumen{background:white;padding:20px;border-radius:10px;margin-bottom:20px;}
+input{width:100%;padding:10px;margin-bottom:10px;}
+#map{height:300px;border-radius:10px;}
+button{padding:12px;background:black;color:white;border:none;cursor:pointer;width:100%;margin-top:10px;}
 </style>
 
 </head>
@@ -71,7 +34,6 @@ background:#111;
 <input id="telefono" placeholder="Teléfono">
 
 <input id="direccionBusqueda" placeholder="Buscar dirección">
-
 <button onclick="buscarDireccion()">Buscar</button>
 
 <input id="ciudad" placeholder="Ciudad">
@@ -88,17 +50,8 @@ background:#111;
 
 <h3>Método de pago</h3>
 
-<div class="metodos">
-
-<button onclick="pagarTransferencia()">
-Pagar por transferencia
-</button>
-
-<button onclick="pagarPayphone()">
-Pagar con PayPhone
-</button>
-
-</div>
+<button onclick="pagarTransferencia()">Transferencia</button>
+<button onclick="pagarPayphone()">PayPhone</button>
 
 </div>
 
@@ -107,5 +60,4 @@ Pagar con PayPhone
 <script src="checkout.js"></script>
 
 </body>
-
 </html>

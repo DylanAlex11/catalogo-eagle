@@ -1,5 +1,4 @@
-let mapa =
-L.map("map").setView([-0.1807,-78.4678],12)
+let mapa = L.map("map").setView([-0.1807,-78.4678],12)
 
 L.tileLayer(
 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -8,75 +7,101 @@ L.tileLayer(
 
 let marcador
 
+// 🔐 PROTEGER PANEL
+async function verificarSesion(){
+
+  const { data } =
+  await supabaseClient.auth.getSession()
+
+  if(!data.session){
+    window.location.href="login.html"
+  }
+
+}
+
 async function cargarPedidos(){
 
-const { data } =
-await supabase
-.from("pedidos")
-.select("*")
-.order("id",{ascending:false})
+  const { data, error } =
+  await supabaseClient
+  .from("pedidos")
+  .select("*")
+  .order("id",{ascending:false})
 
-const tabla =
-document.getElementById("tablaPedidos")
+  if(error){
+    console.error(error)
+    return
+  }
 
-tabla.innerHTML=""
+  const tabla =
+  document.getElementById("tablaPedidos")
 
-data.forEach(p=>{
+  tabla.innerHTML=""
 
-tabla.innerHTML+=`
+  data.forEach(p=>{
 
-<tr>
+    tabla.innerHTML+=`
 
-<td>${p.id}</td>
+    <tr>
 
-<td>${p.cliente}</td>
+    <td>${p.id}</td>
+    <td>${p.cliente}</td>
+    <td>${p.ciudad || ""}</td>
+    <td>$${p.total}</td>
 
-<td>${p.ciudad || ""}</td>
+    <td>
+    <select onchange="cambiarEstado(${p.id}, this.value)">
+    <option ${p.estado=="pendiente"?"selected":""}>pendiente</option>
+    <option ${p.estado=="en camino"?"selected":""}>en camino</option>
+    <option ${p.estado=="entregado"?"selected":""}>entregado</option>
+    </select>
+    </td>
 
-<td>$${p.total}</td>
+    <td>
+    <button onclick="verMapa(${p.lat},${p.lng})">
+    Ver
+    </button>
+    </td>
 
-<td>
-<select onchange="cambiarEstado(${p.id}, this.value)">
-<option ${p.estado=="pendiente"?"selected":""}>pendiente</option>
-<option ${p.estado=="en camino"?"selected":""}>en camino</option>
-<option ${p.estado=="entregado"?"selected":""}>entregado</option>
-</select>
-</td>
+    </tr>
 
-<td>
-<button onclick="verMapa(${p.lat},${p.lng})">
-Ver
-</button>
-</td>
+    `
 
-</tr>
-
-`
-
-})
+  })
 
 }
 
 function verMapa(lat,lng){
 
-if(marcador){
-mapa.removeLayer(marcador)
-}
+  if(marcador){
+    mapa.removeLayer(marcador)
+  }
 
-mapa.setView([lat,lng],15)
+  mapa.setView([lat,lng],15)
 
-marcador =
-L.marker([lat,lng]).addTo(mapa)
+  marcador =
+  L.marker([lat,lng]).addTo(mapa)
 
 }
 
 async function cambiarEstado(id,estado){
 
-await supabase
-.from("pedidos")
-.update({estado})
-.eq("id",id)
+  const { error } =
+  await supabaseClient
+  .from("pedidos")
+  .update({estado})
+  .eq("id",id)
+
+  if(error){
+    alert("Error al actualizar estado")
+    console.error(error)
+  }
 
 }
 
-cargarPedidos()
+// 🚀 INICIO CORRECTO
+async function iniciarPedidos(){
+  await verificarSesion()
+  await cargarPedidos()
+}
+
+iniciarPedidos()

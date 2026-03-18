@@ -1,90 +1,105 @@
 async function verificarSesion(){
 
-const { data } =
-await supabase.auth.getSession()
+  const { data } =
+  await supabaseClient.auth.getSession()
 
-if(!data.session){
-
-window.location.href="login.html"
-
-return
-
-}
+  if(!data.session){
+    window.location.href = "login.html"
+    return
+  }
 
 }
 
 async function cargarProductos(){
 
-const { data } =
-await supabase
-.from("productos")
-.select("*")
+  const { data, error } =
+  await supabaseClient
+  .from("productos")
+  .select("*")
 
-const tabla =
-document.getElementById("tablaProductos")
+  if(error){
+    console.error(error)
+    return
+  }
 
-tabla.innerHTML=""
+  const tabla =
+  document.getElementById("tablaProductos")
 
-data.forEach(p=>{
+  tabla.innerHTML=""
 
-tabla.innerHTML+=`
+  data.forEach(p=>{
 
-<tr>
+    tabla.innerHTML+=`
 
-<td>${p.id}</td>
+    <tr>
 
-<td>${p.nombre}</td>
+    <td>${p.id}</td>
 
-<td>
-<input type="number" id="precio-${p.id}" value="${p.precio}">
-</td>
+    <td>${p.nombre}</td>
 
-<td>
-<input type="number" id="oferta-${p.id}" value="${p.preciooferta || ''}">
-</td>
+    <td>
+    <input type="number" id="precio-${p.id}" value="${p.precio}">
+    </td>
 
-<td>
-<button onclick="guardar(${p.id})">
-Guardar
-</button>
-</td>
+    <td>
+    <input type="number" id="oferta-${p.id}" value="${p.preciooferta || ''}">
+    </td>
 
-</tr>
+    <td>
+    <button onclick="guardar(${p.id})">
+    Guardar
+    </button>
+    </td>
 
-`
+    </tr>
 
-})
+    `
+
+  })
 
 }
 
 async function guardar(id){
 
-let precio =
-document.getElementById(`precio-${id}`).value
+  let precio =
+  document.getElementById(`precio-${id}`).value
 
-let oferta =
-document.getElementById(`oferta-${id}`).value
+  let oferta =
+  document.getElementById(`oferta-${id}`).value
 
-await supabase
-.from("productos")
-.update({
-precio:precio,
-preciooferta:oferta || null
-})
-.eq("id",id)
+  const { error } =
+  await supabaseClient
+  .from("productos")
+  .update({
+    precio:precio,
+    preciooferta:oferta || null
+  })
+  .eq("id",id)
 
-alert("Precio actualizado")
+  if(error){
+    alert("Error al guardar")
+    console.error(error)
+    return
+  }
+
+  alert("Precio actualizado")
 
 }
 
 async function logout(){
 
-await supabase.auth.signOut()
+  await supabaseClient.auth.signOut()
 
-window.location.href="login.html"
+  localStorage.removeItem("admin")
+
+  window.location.href="login.html"
 
 }
 
-verificarSesion()
+// 🚀 ejecutar correctamente
+async function iniciarAdmin(){
+  await verificarSesion()
+  await cargarProductos()
+}
 
-cargarProductos()
+iniciarAdmin()
