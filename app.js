@@ -140,29 +140,16 @@ function abrirModal(id){
   ? "$"+producto.preciooferta
   : "$"+producto.precio
 
-  document.getElementById("modalImagen")
-  .src = producto.imagen
+  document.getElementById("modalImagen").src = producto.imagen
+  document.getElementById("modalNombre").innerText = producto.nombre
+  document.getElementById("modalPrecio").innerText = precio
+  document.getElementById("modalMarca").innerText = "Marca: " + producto.marca
+  document.getElementById("modalModelo").innerText = "Modelo: " + producto.modelo
+  document.getElementById("modalDescripcion").innerText = producto.descripcion
 
-  document.getElementById("modalNombre")
-  .innerText = producto.nombre
+  document.getElementById("modalAgregar").onclick = () => agregarCarrito(id)
 
-  document.getElementById("modalPrecio")
-  .innerText = precio
-
-  document.getElementById("modalMarca")
-  .innerText = "Marca: " + producto.marca
-
-  document.getElementById("modalModelo")
-  .innerText = "Modelo: " + producto.modelo
-
-  document.getElementById("modalDescripcion")
-  .innerText = producto.descripcion
-
-  document.getElementById("modalAgregar")
-  .onclick = () => agregarCarrito(id)
-
-  document.getElementById("modalProducto")
-  .style.display="flex"
+  document.getElementById("modalProducto").style.display="flex"
 
 }
 
@@ -288,6 +275,18 @@ function actualizarContador(){
 
 }
 
+// 🔥 NUEVO: IR A CHECKOUT
+function irCheckout(){
+
+  if(carrito.length === 0){
+    alert("Tu carrito está vacío")
+    return
+  }
+
+  window.location.href = "checkout/checkout.html"
+}
+
+// 💬 WHATSAPP (mejorado)
 function enviarWhatsApp(){
 
   if(carrito.length === 0){
@@ -302,35 +301,20 @@ function enviarWhatsApp(){
     return
   }
 
-  let fecha = new Date().toLocaleString()
-
-  let mensaje =
-  "Hola, quiero hacer el siguiente pedido:%0A%0A"
-
-  mensaje += `Cliente: ${nombre}%0A`
-  mensaje += `Fecha: ${fecha}%0A%0A`
-
+  let mensaje = `Cliente: ${nombre}\n\n`
   let total = 0
 
   carrito.forEach(p=>{
-
     let subtotal = p.precio * p.cantidad
     total += subtotal
 
-    mensaje += `• ${p.nombre}%0A`
-    mensaje += `Marca: ${p.marca}%0A`
-    mensaje += `Modelo: ${p.modelo}%0A`
-    mensaje += `Categoría: ${p.categoria}%0A`
-    mensaje += `Cantidad: ${p.cantidad}%0A`
-    mensaje += `Subtotal: $${subtotal}%0A%0A`
-
+    mensaje += `${p.nombre} x${p.cantidad} - $${subtotal}\n`
   })
 
-  mensaje += `%0A--------------------%0A`
-  mensaje += `TOTAL: $${total}%0A`
+  mensaje += `\nTOTAL: $${total}`
 
   window.open(
-  `https://wa.me/525670072002?text=${mensaje}`
+  `https://wa.me/525670072002?text=${encodeURIComponent(mensaje)}`
   )
 
 }

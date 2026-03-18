@@ -12,6 +12,7 @@ L.tileLayer(
 
 let marcador
 
+// 📍 BUSCAR DIRECCIÓN
 async function buscarDireccion(){
 
   let texto = document.getElementById("direccionBusqueda").value
@@ -42,6 +43,7 @@ async function buscarDireccion(){
   calcularEnvioFinal()
 }
 
+// 📍 CLICK EN MAPA
 mapa.on("click",function(e){
 
   if(marcador) mapa.removeLayer(marcador)
@@ -54,6 +56,7 @@ mapa.on("click",function(e){
   calcularEnvioFinal()
 })
 
+// 📏 DISTANCIA
 function calcularDistancia(lat1,lon1,lat2,lon2){
 
   let R = 6371
@@ -70,6 +73,7 @@ function calcularDistancia(lat1,lon1,lat2,lon2){
   return 2*R*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))
 }
 
+// 🚚 ENVÍO
 function calcularEnvio(d){
   if(d<=5) return 2
   if(d<=10) return 3
@@ -78,9 +82,27 @@ function calcularEnvio(d){
   return 12
 }
 
+// 🔥 TOTAL PRODUCTOS + FINAL
+function calcularTotal(){
+
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || []
+
+  let totalProductos =
+  carrito.reduce((acc,p)=>acc + p.precio*p.cantidad,0)
+
+  let envio =
+  parseFloat(document.getElementById("envio").innerText)
+
+  let totalFinal = totalProductos + envio
+
+  document.getElementById("totalProductos").innerText = totalProductos
+  document.getElementById("totalFinal").innerText = totalFinal
+}
+
+// 🔥 FUNCIÓN PRINCIPAL
 function calcularEnvioFinal(){
 
-  if(!window.lat) return
+  if(!window.lat || !window.lng) return
 
   let distancia =
   calcularDistancia(
@@ -94,9 +116,11 @@ function calcularEnvioFinal(){
 
   document.getElementById("distancia").innerText = distancia.toFixed(2)
   document.getElementById("envio").innerText = envio
+
+  calcularTotal()
 }
 
-// 🔥 CREAR PEDIDO (BASE)
+// 💾 CREAR PEDIDO
 async function crearPedido(){
 
   let cliente = document.getElementById("nombre").value
@@ -106,6 +130,11 @@ async function crearPedido(){
 
   if(!cliente || !telefono){
     alert("Completa los datos")
+    return null
+  }
+
+  if(!window.lat){
+    alert("Selecciona ubicación en el mapa")
     return null
   }
 
@@ -170,4 +199,9 @@ async function pagarPayphone(){
   "https://pay.payphonetodoesposible.com/XXXXXXXX"
 
   window.location.href = linkPayphone
+}
+
+// 🚀 CALCULAR TOTAL AL CARGAR
+window.onload = function(){
+  calcularTotal()
 }

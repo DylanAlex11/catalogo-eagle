@@ -60,13 +60,21 @@ onkeyup="buscarProducto()"
 
 <div id="carrito" class="carrito">
 <h2>Tu pedido</h2>
+
 <ul id="listaCarrito"></ul>
+
 <h3>Total: $<span id="totalCarrito">0</span></h3>
+
+<!-- 🔥 NUEVO: BOTÓN CHECKOUT -->
+<button onclick="irCheckout()">
+Finalizar compra 🚚
+</button>
 
 <button onclick="generarPDF()">Descargar pedido</button>
 <button onclick="enviarWhatsApp()">Enviar pedido</button>
 <button onclick="vaciarCarrito()">Vaciar carrito</button>
 <button onclick="cerrarCarrito()">Cerrar</button>
+
 </div>
 
 <div id="modalProducto" class="modal">
