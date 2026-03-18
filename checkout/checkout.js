@@ -180,6 +180,8 @@ async function pagarTransferencia(){
   `Total: $${pedido.total}\n`+
   `Cliente: ${pedido.cliente}\n`+
   `Dirección: ${pedido.direccion}, ${pedido.ciudad}\n\n`+
+  `Modalidad: Envío a domicilio\n`+
+  `Método de pago: por confirmar (Tarjeta o efectivo en sucursal / transferencia)\n\n`+
   `Quiero pagar por transferencia`
 
   window.open(

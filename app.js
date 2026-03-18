@@ -318,6 +318,7 @@ function retirarSucursal(){
 
   mensaje += `\nTOTAL: $${total}`
   mensaje += `\nModalidad: Retiro en sucursal`
+  mensaje += `\nMétodo de pago: por confirmar (Tarjeta o efectivo en sucursal / transferencia)`
 
   window.open(
   `https://wa.me/525670072002?text=${encodeURIComponent(mensaje)}`
